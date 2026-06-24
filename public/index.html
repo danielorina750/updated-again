@@ -162,16 +162,7 @@
     }
 
     .premium-member-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      pointer-events: none;
-      opacity: 0;
-      background:
-        radial-gradient(circle at var(--mx) var(--my), rgba(184,255,95,.22), transparent 24%),
-        linear-gradient(120deg, transparent 12%, rgba(255,255,255,.14) 24%, transparent 38%);
-      transition: opacity .55s var(--ease-premium);
+      display: none;
     }
 
     .premium-member-card:hover {
@@ -181,9 +172,7 @@
       box-shadow: 0 42px 110px rgba(0,0,0,.38), 0 0 0 1px rgba(184,255,95,.08) inset;
     }
 
-    .premium-member-card:hover::before {
-      opacity: 1;
-    }
+
 
     .premium-member-photo {
       position: relative;
@@ -203,13 +192,13 @@
       height: 100%;
       object-fit: cover;
       object-position: center top;
-      filter: grayscale(1) saturate(.72) contrast(1.02);
+      filter: none;
       transform: scale(1.005);
       transition: transform .85s var(--ease-premium), filter .85s var(--ease-premium);
     }
 
     .premium-member-card:hover .premium-member-photo img {
-      filter: grayscale(0) saturate(1.05) contrast(1.03);
+      filter: none;
       transform: scale(1.1);
     }
 
