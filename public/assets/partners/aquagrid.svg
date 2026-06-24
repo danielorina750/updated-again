@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 240" role="img" aria-label="AquaGrid logo">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#6ee7ff" />
+      <stop offset="1" stop-color="#0e766e" />
+    </linearGradient>
+    <filter id="s" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="18" stdDeviation="16" flood-color="#000" flood-opacity=".28"/></filter>
+  </defs>
+  <rect width="360" height="240" rx="42" fill="#071c26"/>
+  <circle cx="286" cy="42" r="92" fill="url(#g)" opacity=".12"/>
+  <path d="M74 176c28-36 53-54 86-54s58 18 86 54c-32 25-59 37-86 37s-54-12-86-37z" fill="url(#g)" filter="url(#s)"/>
+  <text x="42" y="64" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="900" fill="#fff" letter-spacing="1.4">AquaGrid</text>
+  <text x="42" y="94" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" fill="#ffffff" opacity=".64" letter-spacing="1.8">WATER INFRASTRUCTURE</text>
+  <text x="292" y="202" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="900" fill="#ffffff" opacity=".9">AG</text>
+</svg>

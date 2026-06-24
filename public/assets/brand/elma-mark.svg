@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" role="img" aria-label="ELMA partner mark">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b8ff5f"/><stop offset=".55" stop-color="#28d987"/><stop offset="1" stop-color="#0e766e"/></linearGradient></defs>
+<rect width="320" height="320" rx="80" fill="#071c15"/>
+<circle cx="160" cy="160" r="118" fill="url(#g)" opacity=".94"/>
+<path d="M80 199c55-10 89-43 99-106 32 25 52 60 61 106-52-20-103-20-160 0Z" fill="#fff" opacity=".93"/>
+<text x="160" y="245" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="50" font-weight="800" fill="#fff">ELMA</text>
+</svg>

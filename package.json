@@ -1,0 +1,10 @@
+{
+  "name": "sien-group-premium-website",
+  "version": "1.0.1",
+  "private": true,
+  "scripts": {
+    "build": "node -e \"console.log('SIEN Group static website ready in public directory')\"",
+    "start": "npx serve public"
+  },
+  "devDependencies": {}
+}

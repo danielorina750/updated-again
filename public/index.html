@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SIEN Group is a multidisciplinary architectural design, engineering, construction management and infrastructure consulting firm delivering residential, hospitality, healthcare, commercial, industrial, education and civic projects." />
+  <meta name="theme-color" content="#061711" />
+  <title>SIEN Group | Premium Architectural Design, Engineering & Infrastructure</title>
+  <link rel="icon" type="image/png" href="assets/brand/sien-logo.png" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* Team section update: SIEN-branded, Dribbble-inspired editorial cards and motion */
+    .team-showcase {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      background:
+        radial-gradient(circle at 12% 18%, rgba(167, 226, 41, 0.17), transparent 30%),
+        radial-gradient(circle at 84% 72%, rgba(47, 118, 88, 0.34), transparent 34%),
+        linear-gradient(135deg, #04110d 0%, #071b14 48%, #03100c 100%);
+    }
+
+    .team-showcase::before,
+    .team-showcase::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      border-radius: 999px;
+      pointer-events: none;
+      filter: blur(1px);
+      animation: sienTeamFloat 12s ease-in-out infinite alternate;
+    }
+
+    .team-showcase::before {
+      width: 34rem;
+      height: 34rem;
+      top: -12rem;
+      right: -10rem;
+      border: 1px solid rgba(167, 226, 41, 0.22);
+      background: rgba(167, 226, 41, 0.05);
+    }
+
+    .team-showcase::after {
+      width: 26rem;
+      height: 26rem;
+      bottom: -12rem;
+      left: -8rem;
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      background: rgba(255, 255, 255, 0.025);
+      animation-delay: -5s;
+    }
+
+    .team-showcase .team-shell {
+      position: relative;
+      width: min(1180px, 92vw);
+      margin: 0 auto;
+    }
+
+    .team-intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(250px, 0.38fr);
+      gap: clamp(1.5rem, 4vw, 4rem);
+      align-items: end;
+      margin-bottom: clamp(2rem, 5vw, 4rem);
+    }
+
+    .team-intro h2 {
+      max-width: 900px;
+      margin-bottom: 1rem;
+    }
+
+    .team-counter-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 220px;
+      border: 1px solid rgba(167, 226, 41, 0.36);
+      border-radius: 34px;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.075);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.24);
+      backdrop-filter: blur(16px);
+    }
+
+    .team-counter-card::before {
+      content: "";
+      position: absolute;
+      inset: -35% -25% auto auto;
+      width: 13rem;
+      height: 13rem;
+      border-radius: 999px;
+      background: rgba(167, 226, 41, 0.15);
+      animation: sienPulse 4.5s ease-in-out infinite;
+    }
+
+    .team-counter-card span {
+      display: block;
+      color: #a7e229;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .team-counter-card strong {
+      display: block;
+      margin-top: 0.4rem;
+      color: #fff;
+      font-size: clamp(4.5rem, 9vw, 7rem);
+      line-height: 0.9;
+    }
+
+    .team-counter-card p {
+      margin: 1rem 0 0;
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 0.98rem;
+      line-height: 1.6;
+    }
+
+    .team-stage {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(1.25rem, 3vw, 2rem);
+      align-items: stretch;
+    }
+
+    .team-profile-card {
+      --mx: 50%;
+      --my: 50%;
+      position: relative;
+      min-height: 680px;
+      overflow: hidden;
+      border: 1px solid rgba(167, 226, 41, 0.35);
+      border-radius: 42px;
+      background: #061711;
+      box-shadow: 0 28px 90px rgba(0, 0, 0, 0.34);
+      transform-style: preserve-3d;
+      transition: transform 0.45s ease, border-color 0.45s ease, box-shadow 0.45s ease;
+    }
+
+    .team-profile-card:hover {
+      border-color: rgba(167, 226, 41, 0.8);
+      box-shadow: 0 36px 110px rgba(0, 0, 0, 0.44), 0 0 0 1px rgba(167, 226, 41, 0.1) inset;
+    }
+
+    .team-profile-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at var(--mx) var(--my), rgba(167, 226, 41, 0.20), transparent 25%),
+        linear-gradient(120deg, transparent 12%, rgba(255, 255, 255, 0.12) 22%, transparent 34%);
+      opacity: 0;
+      transform: translateX(-18%);
+      transition: opacity 0.45s ease;
+    }
+
+    .team-profile-card:hover::before {
+      opacity: 1;
+      animation: sienSheen 1.25s ease forwards;
+    }
+
+    .team-photo {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .team-photo img {
+      position: absolute;
+      right: -4%;
+      bottom: 0;
+      width: min(60%, 380px);
+      height: auto;
+      object-fit: contain;
+      object-position: bottom center;
+      filter: drop-shadow(0 30px 45px rgba(0, 0, 0, 0.48));
+      transition: transform 0.55s ease;
+    }
+
+    .team-profile-card:hover .team-photo img {
+      transform: translateY(-8px) scale(1.02);
+    }
+
+    .team-photo-placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 2rem;
+      background:
+        radial-gradient(circle at 72% 24%, rgba(167, 226, 41, 0.28), transparent 25%),
+        radial-gradient(circle at 25% 76%, rgba(255, 255, 255, 0.08), transparent 22%),
+        linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0));
+    }
+
+    .team-avatar-placeholder {
+      margin-right: 0.25rem;
+      width: min(52%, 320px);
+      aspect-ratio: 4 / 5;
+      border-radius: 36px;
+      border: 1px solid rgba(167, 226, 41, 0.32);
+      background:
+        linear-gradient(180deg, rgba(167, 226, 41, 0.12), rgba(255,255,255,0.02)),
+        linear-gradient(135deg, #10241b, #09150f 55%, #0d2119 100%);
+      display: grid;
+      place-items: center;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04), 0 25px 60px rgba(0,0,0,0.3);
+      position: relative;
+      overflow: hidden;
+      color: #dff6a6;
+    }
+
+    .team-avatar-placeholder::before {
+      content: "";
+      position: absolute;
+      width: 64%;
+      height: 64%;
+      border-radius: 50%;
+      top: 14%;
+      background: rgba(255,255,255,0.08);
+      box-shadow: 0 0 0 30px rgba(255,255,255,0.03);
+    }
+
+    .team-avatar-placeholder::after {
+      content: "";
+      position: absolute;
+      width: 82%;
+      height: 44%;
+      bottom: -8%;
+      border-radius: 50% 50% 18% 18%;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .team-avatar-placeholder b {
+      position: relative;
+      z-index: 1;
+      font-size: clamp(2rem, 5vw, 3rem);
+      letter-spacing: 0.08em;
+    }
+
+    .team-profile-card::after {
+      content: "";
+      position: absolute;
+      inset: auto auto 0 0;
+      width: 64%;
+      height: 100%;
+      z-index: 1;
+      background: linear-gradient(90deg, rgba(4, 17, 13, 0.95) 0%, rgba(4, 17, 13, 0.90) 46%, rgba(4, 17, 13, 0.52) 72%, rgba(4, 17, 13, 0) 100%);
+      pointer-events: none;
+    }
+
+    .team-card-content {
+      position: relative;
+      z-index: 3;
+      width: min(64%, 540px);
+      padding: clamp(2rem, 4vw, 2.75rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      min-height: 680px;
+    }
+
+    .team-role-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      width: max-content;
+      margin-bottom: 1rem;
+      padding: 0.7rem 1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(167, 226, 41, 0.34);
+      background: rgba(167, 226, 41, 0.12);
+      color: #dff6a6;
+      font-size: 0.77rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      backdrop-filter: blur(10px);
+    }
+
+    .team-role-label::before {
+      content: "";
+      width: 0.58rem;
+      height: 0.58rem;
+      border-radius: 50%;
+      background: #a7e229;
+      box-shadow: 0 0 12px rgba(167, 226, 41, 0.55);
+    }
+
+    .team-card-content h3 {
+      margin: 0 0 0.35rem;
+      color: #fff;
+      font-size: clamp(1.7rem, 2vw, 2.35rem);
+      line-height: 1.08;
+    }
+
+    .team-title-line {
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 0.98rem;
+      letter-spacing: 0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .team-bio {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 0.98rem;
+      line-height: 1.75;
+      max-width: 40ch;
+    }
+
+    .team-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-top: 1.5rem;
+    }
+
+    .team-tags span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 2.5rem;
+      padding: 0.65rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: rgba(255,255,255,0.84);
+      font-size: 0.82rem;
+    }
+
+    .team-ribbon {
+      margin-top: 1.5rem;
+      overflow: hidden;
+      border-radius: 999px;
+      border: 1px solid rgba(167, 226, 41, 0.14);
+      background: rgba(255,255,255,0.04);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03);
+    }
+
+    .team-ribbon-track {
+      display: flex;
+      gap: 1.4rem;
+      width: max-content;
+      padding: 0.95rem 1.25rem;
+      color: rgba(255,255,255,0.82);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.72rem;
+      font-weight: 600;
+      animation: sienMarquee 25s linear infinite;
+    }
+
+    .team-ribbon strong {
+      color: #a7e229;
+      font-weight: 800;
+    }
+
+    @keyframes sienTeamFloat {
+      from { transform: translate3d(0, 0, 0) scale(1); }
+      to { transform: translate3d(0, 18px, 0) scale(1.04); }
+    }
+
+    @keyframes sienPulse {
+      0%, 100% { transform: scale(1); opacity: .85; }
+      50% { transform: scale(1.08); opacity: 1; }
+    }
+
+    @keyframes sienSheen {
+      from { transform: translateX(-18%); }
+      to { transform: translateX(18%); }
+    }
+
+    @keyframes sienMarquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    @media (max-width: 1100px) {
+      .team-intro,
+      .team-stage {
+        grid-template-columns: 1fr;
+      }
+
+      .team-profile-card,
+      .team-card-content {
+        min-height: 620px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .team-profile-card,
+      .team-card-content {
+        min-height: auto;
+      }
+
+      .team-card-content {
+        width: 100%;
+        padding-top: 19rem;
+      }
+
+      .team-photo img,
+      .team-avatar-placeholder {
+        width: min(78%, 330px);
+        right: 50%;
+        transform: translateX(50%);
+      }
+
+      .team-photo img {
+        top: 1rem;
+        bottom: auto;
+      }
+
+      .team-photo-placeholder {
+        justify-content: center;
+        padding-top: 1.5rem;
+      }
+
+      .team-profile-card::after {
+        width: 100%;
+        height: 72%;
+        top: auto;
+        bottom: 0;
+        background: linear-gradient(180deg, rgba(4,17,13,0) 0%, rgba(4,17,13,.82) 22%, rgba(4,17,13,.97) 100%);
+      }
+
+      .team-bio {
+        max-width: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .team-showcase::before,
+      .team-showcase::after,
+      .team-counter-card::before,
+      .team-ribbon-track {
+        animation: none !important;
+      }
+
+      .team-profile-card,
+      .team-photo img {
+        transition: none !important;
+      }
+    }
+  </style>
+
+</head>
+<body>
+  <div class="cursor-glow" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+  <header class="site-header" id="top">
+    <a class="brand" href="#top" aria-label="SIEN Group home">
+      <img src="assets/brand/sien-logo.png" alt="SIEN Group logo" />
+      <span><strong>SIEN</strong><small>Group</small></span>
+    </a>
+    <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="#about">Studio</a>
+      <a href="#team">Team</a>
+      <a href="#services">Services</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#partners">Partners</a>
+      <a href="#compliance">Compliance</a>
+      <a href="https://sien-admin-portal.vercel.app/" target="_blank" rel="noopener">Portal</a>
+      <a href="#contact" class="nav-cta">Start a Project</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero section-dark" aria-labelledby="hero-title">
+      <div class="hero-bg" aria-hidden="true">
+        <img src="assets/brand/hero-hillside.jpg" alt="" />
+        <img src="assets/brand/hero-urban.jpg" alt="" />
+        <img src="assets/brand/hero-masterplan.jpg" alt="" />
+      </div>
+      <div class="gridlines" aria-hidden="true"></div>
+      <div class="hero-content reveal">
+        <p class="eyebrow">Saiga Index Enterprise Limited · Established 2019</p>
+        <h1 id="hero-title">Architectural design, engineering and infrastructure intelligence for landmark spaces.</h1>
+        <p class="hero-copy">SIEN Group unifies sophisticated aesthetic planning with complex engineering, construction management and development consultancy to deliver resilient commercial, civic, healthcare, hospitality and residential assets.</p>
+        <div class="hero-actions">
+          <a href="#portfolio" class="btn btn-primary">Explore Portfolio</a>
+          <a href="#contact" class="btn btn-secondary">Book Consultation</a>
+        </div>
+      </div>
+      <aside class="hero-panel reveal" aria-label="SIEN portfolio summary">
+        <div class="panel-topline">Portfolio Intelligence</div>
+        <div class="hero-metric"><strong data-count="18">0</strong><span>featured projects</span></div>
+        <div class="hero-metric"><strong data-count="8">0</strong><span>market sectors</span></div>
+        <div class="hero-metric"><strong data-count="49000">0</strong><span>sqm commercial development</span></div>
+        <div class="hero-metric"><strong data-count="14000">0</strong><span>stadium spectator target</span></div>
+      </aside>
+      <a href="#about" class="scroll-cue" aria-label="Scroll to about">Scroll</a>
+    </section>
+
+    <section class="signature-strip" aria-label="Key SIEN capabilities">
+      <span>Architecture</span><span>Structural Engineering</span><span>Urban Planning</span><span>MEP Services</span><span>QS & Cost Advisory</span><span>Construction Management</span>
+    </section>
+
+    <section class="section about" id="about" aria-labelledby="about-title">
+      <div class="section-kicker reveal">Studio Profile</div>
+      <div class="split">
+        <div class="reveal">
+          <h2 id="about-title">A multidisciplinary group built for complex delivery.</h2>
+          <p class="lead">Established in 2019, SIEN Group Limited is a multidisciplinary design, development and infrastructure consulting firm. The studio brings together architects, engineers, planners, quantity surveyors and construction managers under one coordinated delivery framework.</p>
+        </div>
+        <div class="about-card reveal">
+          <p>Our mandate is to streamline regulatory workflows, reduce budget overruns and coordinate high-end builds through integrated design, engineering and project execution leadership.</p>
+          <div class="cred-row"><span>End-to-end consulting</span><span>Compliance-led delivery</span><span>Asset value focus</span></div>
+        </div>
+      </div>
+      <div class="discipline-grid" aria-label="SIEN multidisciplinary team">
+        <article class="discipline reveal"><span>01</span><h3>Architects Division</h3><p>Design architects, detailing architects, visual designers, landscape architects and interior designers translating investor ambition into spatial reality.</p></article>
+        <article class="discipline reveal"><span>02</span><h3>Engineering Division</h3><p>Structural, mechanical, electrical, civil and service engineers ensuring safety, compliance, load mechanics and operational functionality.</p></article>
+        <article class="discipline reveal"><span>03</span><h3>Quantity Surveyors</h3><p>Cost schedules, tender models, budget control and implementation advice for commercially disciplined delivery.</p></article>
+        <article class="discipline reveal"><span>04</span><h3>Planning Team</h3><p>Urban designers, physical planners and land surveyors coordinating property space management, compliance and neighborhood context.</p></article>
+        <article class="discipline reveal"><span>05</span><h3>Construction Managers</h3><p>Execution leaders managing site activity, material schedules, civil standards, labour safety and strict deadline controls.</p></article>
+        <article class="discipline reveal accent"><span>06</span><h3>Integrated Brain Trust</h3><p>One coordinated team that navigates planning codes, load calculations, site parameters and high-end delivery requirements.</p></article>
+      </div>
+    </section>
+
+
+    <section class="section section-dark team-showcase" id="team" aria-labelledby="team-title">
+      <div class="team-shell">
+        <div class="section-kicker reveal">Leadership Team</div>
+        <div class="team-intro">
+          <div class="reveal">
+            <p class="eyebrow">Architecture · Engineering · Construction Leadership</p>
+            <h2 id="team-title">Meet the technical leadership behind SIEN Group.</h2>
+            <p class="lead">A premium team section inspired by modern editorial layouts, adapted to SIEN’s green-forward visual identity with refined motion, depth and card interactions.</p>
+          </div>
+          <aside class="team-counter-card reveal" aria-label="SIEN leadership count">
+            <span>Core Team Profiles</span>
+            <strong>04</strong>
+            <p>Four featured leadership cards are ready. Two profiles are fully populated and the remaining two cards are prepared for your manual updates.</p>
+          </aside>
+        </div>
+
+        <div class="team-stage" aria-label="SIEN Group team members">
+          <article class="team-profile-card reveal" data-team-tilt>
+            <figure class="team-photo">
+              <img src="assets/team/joash-obare.png" alt="Arch. Joash Obare, Principal Architect for SIEN Group" loading="lazy" />
+            </figure>
+            <div class="team-card-content">
+              <span class="team-role-label">Principal Architect</span>
+              <h3>Arch. Joash Obare</h3>
+              <span class="team-title-line">Principal Architect · SIEN Group</span>
+              <p class="team-bio">Arch. Joash Obare is the Principal Architect for SIEN Group. A registered Architect with Boraqs (A1589), and a member of AAK (MAAK 3696), Arch. Obare brings a rich experience spanning over 13 years from his work at Symbion International Architect to private practice and experience with Kisii County Government. Mr Obare's training in Project Planning (Oracle), project management experience, administration, and contract management ensures high level output of design works and timely delivery of projects from inception to construction works, within cost and schedule. Mr. Obare is a team player guaranteeing a wholesome package of Architecture-Engineering-Construction and Project Management as it is the heart of SIEN Group.</p>
+              <div class="team-tags" aria-label="Arch. Joash Obare credentials">
+                <span>BORAQS A1589</span>
+                <span>AAK MAAK 3696</span>
+                <span>13+ Years Experience</span>
+                <span>Oracle Project Planning</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="team-profile-card reveal" data-team-tilt>
+            <figure class="team-photo">
+              <img src="assets/team/wycliff-mitunda.png" alt="Eng. Wycliff Mitunda, Principal Structural Engineer at SIEN Group" loading="lazy" />
+            </figure>
+            <div class="team-card-content">
+              <span class="team-role-label">Principal Structural Engineer</span>
+              <h3>Eng. Wycliff Mitunda</h3>
+              <span class="team-title-line">Principal Structural Engineer · SIEN Group</span>
+              <p class="team-bio">Eng. Wycliff Mitunda is the Principal Structural Engineer at SIEN Group. He is a registered engineer with the Engineering Board of Kenya (EBK) and a member of the Institution of Engineers of Kenya (IEK). Eng. Wycliff brings extensive professional experience and expertise to the firm. He has received training in various fields, including FIDIC contracts, project management, and project planning. As a dedicated team player, Eng. Wycliff contributes significantly to the success and growth of SIEN Group through his leadership, technical competence, and collaborative approach.</p>
+              <div class="team-tags" aria-label="Eng. Wycliff Mitunda credentials">
+                <span>EBK Registered</span>
+                <span>IEK Member</span>
+                <span>FIDIC Contracts</span>
+                <span>Project Management</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="team-profile-card reveal" data-team-tilt>
+            <figure class="team-photo team-photo-placeholder" aria-hidden="true">
+              <div class="team-avatar-placeholder"><b>03</b></div>
+            </figure>
+            <div class="team-card-content">
+              <span class="team-role-label">Team Member 03</span>
+              <h3>Profile to be updated</h3>
+              <span class="team-title-line">Add role title · SIEN Group</span>
+              <p class="team-bio">This card has been prepared so you can manually update the remaining team member’s name, role, portrait and professional biography while keeping the same visual design and animations used across the leadership section.</p>
+              <div class="team-tags" aria-label="Placeholder profile tags">
+                <span>Add Name</span>
+                <span>Add Role</span>
+                <span>Add Credentials</span>
+                <span>Add Experience</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="team-profile-card reveal" data-team-tilt>
+            <figure class="team-photo team-photo-placeholder" aria-hidden="true">
+              <div class="team-avatar-placeholder"><b>04</b></div>
+            </figure>
+            <div class="team-card-content">
+              <span class="team-role-label">Team Member 04</span>
+              <h3>Profile to be updated</h3>
+              <span class="team-title-line">Add role title · SIEN Group</span>
+              <p class="team-bio">Use this fourth card for the final individual. The layout is already aligned with the SIEN site palette and the premium team-section styling, so you only need to replace the placeholder text and image when ready.</p>
+              <div class="team-tags" aria-label="Placeholder profile tags">
+                <span>Add Name</span>
+                <span>Add Role</span>
+                <span>Add Credentials</span>
+                <span>Add Experience</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="team-ribbon reveal" aria-hidden="true">
+          <div class="team-ribbon-track">
+            <span><strong>Architecture Leadership</strong></span><span>Structural Engineering</span><span>Project Planning</span><span>Contract Management</span><span>Cost & Schedule Discipline</span><span>Construction Delivery</span>
+            <span><strong>Architecture Leadership</strong></span><span>Structural Engineering</span><span>Project Planning</span><span>Contract Management</span><span>Cost & Schedule Discipline</span><span>Construction Delivery</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section section-dark services" id="services" aria-labelledby="services-title">
+      <div class="section-kicker reveal">What SIEN Delivers</div>
+      <div class="split">
+        <div class="reveal">
+          <h2 id="services-title">Design excellence with engineering certainty.</h2>
+          <p class="lead">From early feasibility to site execution, SIEN positions each project as a long-term spatial and commercial asset.</p>
+        </div>
+        <div class="service-orbit reveal" aria-hidden="true">
+          <div class="orbit-core">SIEN</div>
+          <span>Design</span><span>Engineer</span><span>Plan</span><span>Build</span>
+        </div>
+      </div>
+      <div class="service-grid">
+        <article class="service reveal"><i>AD</i><h3>Architectural Design & Consultation</h3><p>Master planning, structural drafts, landscape strategy and detailed interiors.</p></article>
+        <article class="service reveal"><i>ES</i><h3>Engineering Design & Supervision</h3><p>Civil structures, mechanical installations, electrical service systems and load tracking.</p></article>
+        <article class="service reveal"><i>PM</i><h3>Construction & Project Management</h3><p>Hands-on site execution, materials handling, quality inspections and cost containment.</p></article>
+        <article class="service reveal"><i>UP</i><h3>Urban & Cities Planning</h3><p>Zoning alignment, physical planning subdivisions, statutory registrations and maps.</p></article>
+        <article class="service reveal"><i>DC</i><h3>Development Consultancy</h3><p>Municipal guidelines, land validation, project approvals and regulatory filings.</p></article>
+        <article class="service reveal"><i>FA</i><h3>Real Estate Finance Advisory</h3><p>Feasibility studies, material volume budgeting and investment-return projections.</p></article>
+      </div>
+    </section>
+
+    <section class="section intelligence" id="intelligence" aria-labelledby="intelligence-title">
+      <div class="section-kicker reveal">Portfolio Intelligence</div>
+      <div class="split">
+        <div class="reveal">
+          <h2 id="intelligence-title">A balanced portfolio across residential, healthcare, hospitality, commercial, industrial and civic infrastructure.</h2>
+          <p class="lead">The redesigned site turns SIEN’s project profile into a live visual dashboard that gives clients confidence before they even make contact.</p>
+        </div>
+        <div class="donut-card reveal">
+          <div class="donut" aria-label="Project status chart"><span>18</span></div>
+          <div class="legend"><span><b class="completed"></b>Completed · 4</span><span><b class="ongoing"></b>Construction ongoing · 8</span><span><b class="design"></b>Design phase · 6</span></div>
+        </div>
+      </div>
+      <div class="analytics-grid">
+        <div class="bar-card reveal"><h3>Project Mix</h3><div class="bars" id="sectorBars"></div></div>
+        <div class="insight-card reveal"><h3>Signature Project Scale</h3><div class="scale-list"><p><strong>49,000 sqm</strong><span>Guardian Mall built-up area</span></p><p><strong>14,000</strong><span>Kisii Stadium spectator capacity target</span></p><p><strong>1,200 rooms</strong><span>Trans-west PBSA accommodation model</span></p><p><strong>100 beds</strong><span>HBVM Narok Hospital target capacity</span></p></div></div>
+      </div>
+    </section>
+
+    <section class="section section-dark portfolio" id="portfolio" aria-labelledby="portfolio-title">
+      <div class="section-kicker reveal">Selected Project Portfolio</div>
+      <div class="portfolio-head reveal">
+        <h2 id="portfolio-title">Curated builds designed to be experienced, not just viewed.</h2>
+        <p>Filter through SIEN’s residential, hospitality, healthcare, commercial, industrial, educational, sports and master-planning portfolio. Newly published projects from the SIEN admin portal appear here automatically.</p>
+      </div>
+      <div class="filter-bar reveal" id="filterBar" aria-label="Filter projects"></div>
+      <div class="project-grid" id="projectGrid"></div>
+      <p class="portfolio-sync-note" id="portfolioSyncNote">Portfolio sync ready. Admin-uploaded projects will appear here when Supabase is connected.</p>
+    </section>
+
+    <section class="section process" id="process" aria-labelledby="process-title">
+      <div class="section-kicker reveal">Delivery Method</div>
+      <div class="split">
+        <div class="reveal"><h2 id="process-title">A disciplined workflow from ambition to built asset.</h2></div>
+        <div class="reveal"><p class="lead">The site communicates SIEN’s value through a premium process timeline, showing clients exactly how architecture, engineering, approvals and site execution connect.</p></div>
+      </div>
+      <div class="timeline">
+        <article class="step reveal"><span>01</span><h3>Discovery & Feasibility</h3><p>Client brief, site context, commercial intent, feasibility and development direction.</p></article>
+        <article class="step reveal"><span>02</span><h3>Concept & Master Planning</h3><p>Spatial strategy, massing, site layout, landscape response and preliminary design narratives.</p></article>
+        <article class="step reveal"><span>03</span><h3>Technical Design</h3><p>Architectural detailing, structural design, MEP coordination and cost planning.</p></article>
+        <article class="step reveal"><span>04</span><h3>Approvals & Compliance</h3><p>Planning submissions, statutory workflows, registrations and documentation support.</p></article>
+        <article class="step reveal"><span>05</span><h3>Construction Supervision</h3><p>Quality inspections, materials tracking, programme controls and site coordination.</p></article>
+        <article class="step reveal"><span>06</span><h3>Close-Out & Asset Value</h3><p>Final documentation, handover, operational readiness and long-term asset value thinking.</p></article>
+      </div>
+    </section>
+
+    <section class="section partners section-dark" id="partners" aria-labelledby="partners-title">
+      <div class="section-kicker reveal">Strategic Partners</div>
+      <div class="split partners-intro">
+        <div class="reveal"><h2 id="partners-title">A trusted delivery ecosystem around SIEN.</h2><p class="lead">Use this section to display the logos of companies, consultants, suppliers and specialist delivery partners SIEN has worked with. ELMA Irrigation is included as the irrigation, greenhouse, dam lining and solar pumping partner.</p></div>
+        <article class="partner-card reveal">
+          <div class="partner-logo"><img src="assets/brand/elma-mark.svg" alt="ELMA Irrigation partner mark" /></div>
+          <div>
+            <p class="eyebrow">Water, irrigation & agricultural infrastructure partner</p>
+            <h3>ELMA Irrigation</h3>
+            <p>Specialist support in advanced irrigation systems, greenhouse installations, dam lining and solar water pump installation for sustainable water management.</p>
+            <a class="btn btn-secondary" href="https://www.elmairrigation.co.ke/" target="_blank" rel="noopener">Visit www.elmairrigation.co.ke</a>
+          </div>
+        </article>
+      </div>
+      <div class="partner-marquee reveal" aria-label="Partner logo carousel">
+        <span class="marquee-fade left"></span><span class="marquee-fade right"></span>
+        <div class="partner-track">
+          <div class="partner-group">
+            <a class="partner-logo-tile featured" href="https://www.elmairrigation.co.ke/" target="_blank" rel="noopener"><img src="assets/brand/elma-mark.svg" alt="ELMA Irrigation logo" /><span>ELMA Irrigation</span><small>Irrigation & water systems</small></a>
+            <span class="partner-logo-tile"><img src="assets/partners/green-axis.svg" alt="GreenAxis Contractors logo" /><span>GreenAxis</span><small>Construction partners</small></span>
+            <span class="partner-logo-tile"><img src="assets/partners/aquagrid.svg" alt="AquaGrid Systems logo" /><span>AquaGrid</span><small>Water infrastructure</small></span>
+            <span class="partner-logo-tile"><img src="assets/partners/stonebridge.svg" alt="StoneBridge Engineering logo" /><span>StoneBridge</span><small>Structural engineering</small></span>
+            <span class="partner-logo-tile"><img src="assets/partners/urbannest.svg" alt="UrbanNest Developments logo" /><span>UrbanNest</span><small>Development partners</small></span>
+            <span class="partner-logo-tile"><img src="assets/partners/skyline-fabricators.svg" alt="Skyline Fabricators logo" /><span>Skyline</span><small>Fabrication support</small></span>
+            <span class="partner-logo-tile"><img src="assets/partners/lumora-interiors.svg" alt="Lumora Interiors logo" /><span>Lumora</span><small>Interior detailing</small></span>
+            <span class="partner-logo-tile"><img src="assets/partners/coreplan-surveyors.svg" alt="CorePlan Surveyors logo" /><span>CorePlan</span><small>Survey and planning</small></span>
+          </div>
+          <div class="partner-group" aria-hidden="true">
+            <a class="partner-logo-tile featured" href="https://www.elmairrigation.co.ke/" target="_blank" rel="noopener"><img src="assets/brand/elma-mark.svg" alt="" /><span>ELMA Irrigation</span><small>Irrigation & water systems</small></a>
+            <span class="partner-logo-tile"><img src="assets/partners/green-axis.svg" alt="" /><span>GreenAxis</span><small>Construction partners</small></span>
+            <span class="partner-logo-tile"><img src="assets/partners/aquagrid.svg" alt="" /><span>AquaGrid</span><small>Water infrastructure</small></span>
+            <span class="partner-logo-tile"><img src="assets/partners/stonebridge.svg" alt="" /><span>StoneBridge</span><small>Structural engineering</small></span>
+            <span class="partner-logo-tile"><img src="assets/partners/urbannest.svg" alt="" /><span>UrbanNest</span><small>Development partners</small></span>
+            <span class="partner-logo-tile"><img src="assets/partners/skyline-fabricators.svg" alt="" /><span>Skyline</span><small>Fabrication support</small></span>
+            <span class="partner-logo-tile"><img src="assets/partners/lumora-interiors.svg" alt="" /><span>Lumora</span><small>Interior detailing</small></span>
+            <span class="partner-logo-tile"><img src="assets/partners/coreplan-surveyors.svg" alt="" /><span>CorePlan</span><small>Survey and planning</small></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section compliance" id="compliance" aria-labelledby="compliance-title">
+      <div class="section-kicker reveal">Verified Compliance Wall</div>
+      <div class="split">
+        <div class="reveal">
+          <h2 id="compliance-title">Statutory confidence, displayed beautifully.</h2>
+          <p class="lead">The certificates are no longer buried at the end. They are presented as a premium evidence wall with zoomable document cards and clear registration metrics.</p>
+        </div>
+        <div class="compliance-facts reveal">
+          <p><span>Company</span><strong>Saiga Index Enterprise Limited</strong></p>
+          <p><span>Registration Date</span><strong>1 October 2019</strong></p>
+          <p><span>Company No.</span><strong>PVT-6LU5A5L</strong></p>
+          <p><span>KRA PIN</span><strong>P051844189W</strong></p>
+        </div>
+      </div>
+      <div class="certificate-grid">
+        
+        <button class="certificate reveal" data-cert="assets/certificates/company-registration-cr12.jpg"><img src="assets/certificates/company-registration-cr12.jpg"/><span>Company Registration</span></button>
+        <button class="certificate reveal" data-cert="assets/certificates/kra-pin-certificate.jpg"><img src="assets/certificates/kra-pin-certificate.jpg" alt="KRA PIN Certificate" /><span>KRA PIN Certificate</span></button>
+      </div>
+    </section>
+
+    <section class="section contact section-dark" id="contact" aria-labelledby="contact-title">
+      <div class="contact-bg" aria-hidden="true"><img src="assets/brand/hero-healthcare.jpg" alt="" /></div>
+      <div class="contact-card reveal">
+        <p class="eyebrow">Connect with SIEN Group</p>
+        <h2 id="contact-title">Let’s design something iconic together.</h2>
+        <p>Consult on architectural drafting, structural engineering, planning approvals, construction management, material supply strategy or project feasibility.</p>
+        <div class="contact-grid">
+          <a href="mailto:info@sien.co.ke"><span>Email</span><strong>info@sien.co.ke</strong></a>
+          <a href="tel:+254726541031"><span>Phone</span><strong>+254 726 541031</strong></a>
+          <a href="tel:+254703679534"><span>Phone</span><strong>+254 703 679534</strong></a>
+          <a href="https://www.sien.co.ke" target="_blank" rel="noopener"><span>Website</span><strong>www.sien.co.ke</strong></a>
+          <p><span>Headquarters</span><strong>Magharibi Place, Langata Road</strong></p>
+          <a href="assets/certificates/SIEN_Group_Profile_Edited_Removed_Certificate_Aligned.pdf" download><span>Company Profile</span><strong>Download PDF</strong></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div><img src="assets/brand/sien-logo.png" alt="SIEN Group logo" /><span>SIEN Group</span></div>
+    <p>Architectural Design · Engineering · Planning · Construction Management · Development Consultancy</p>
+  </footer>
+
+  <dialog class="project-modal" id="projectModal">
+    <button class="modal-close" aria-label="Close project details">×</button>
+    <div class="modal-body" id="modalBody"></div>
+  </dialog>
+
+  <dialog class="lightbox" id="lightbox">
+    <button class="modal-close" aria-label="Close certificate preview">×</button>
+    <img src="" alt="Certificate preview" id="lightboxImage" />
+  </dialog>
+
+  <script src="data.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+
+  <script>
+    (function(){
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced) return;
+      document.querySelectorAll('[data-team-tilt]').forEach(card => {
+        const update = (event) => {
+          const rect = card.getBoundingClientRect();
+          const px = (event.clientX - rect.left) / rect.width;
+          const py = (event.clientY - rect.top) / rect.height;
+          const rx = (0.5 - py) * 10;
+          const ry = (px - 0.5) * 12;
+          card.style.transform = `perspective(1200px) rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg) translateY(-6px)`;
+          card.style.setProperty('--mx', `${(px * 100).toFixed(2)}%`);
+          card.style.setProperty('--my', `${(py * 100).toFixed(2)}%`);
+        };
+        card.addEventListener('pointermove', update);
+        card.addEventListener('pointerenter', update);
+        card.addEventListener('pointerleave', () => {
+          card.style.transform = '';
+          card.style.setProperty('--mx', '50%');
+          card.style.setProperty('--my', '50%');
+        });
+      });
+    })();
+  </script>
+
+  <script src="main.js"></script>
+</body>
+</html>
